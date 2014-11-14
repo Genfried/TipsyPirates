@@ -21,17 +21,18 @@ namespace TipsyPirates.Models
                 }
                 else if(command == Enums.CommandType.TurnRight)
                 {
-                    ship.TurnRight();
+                    ship.TurnStarboard();
                 }
                 else if(command == Enums.CommandType.TurnLeft)
                 {
-                    ship.TurnLeft();
+                    ship.TurnPort();
                 }
                 else
                 {
                     ship.SailBackwards();
                 }
 
+                ship.EndPhase();
             }
         }
     }

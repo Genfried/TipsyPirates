@@ -8,6 +8,13 @@ namespace TipsyPirates.Models
     public abstract class Tile
     {
         public Tile[] Neighbours { get { return _Neighbours; } }
+        public static Tile DavyJonesLocker;
+
+        static Tile() {
+            DavyJonesLocker = new NormalTile();
+            DavyJonesLocker.SetNeighbour(DavyJonesLocker,Enums.Direction.North);
+            DavyJonesLocker.SetNeighbour(DavyJonesLocker,Enums.Direction.East);//can't escape the locker muhahaha!
+        }
 
         private Tile[] _Neighbours  {get; set;}
 
@@ -18,26 +25,20 @@ namespace TipsyPirates.Models
 
         public void SetNeighbour(Tile tile, Enums.Direction direction)
         {
-            Neighbours[(int)direction] = tile;
-            if (tile.Neighbours[(int)Enums.GetOppositeDirection(direction)] != this)
+            _Neighbours[(int)direction] = tile;
+            if (tile.Neighbours[(int)Enums.OppositeOf(direction)] != this)//automatic back linker
             {
-                tile.SetNeighbour(this, Enums.GetOppositeDirection(direction));
+                tile.SetNeighbour(this, Enums.OppositeOf(direction));
             }
         }
-        
-        public void OnArrival(Ship ship)
-        {
 
+        public Tile GetNeighbour(Enums.Direction direction)
+        {
+            return _Neighbours[(int)direction];
         }
 
-        public void OnDeparture(Ship ship)
-        {
+        public virtual void OnArrival(Ship ship) { }
+        public virtual void OnEndPhase(Ship ship) { }
 
-        }
-
-        public void OnEndTurn(Ship ship)
-        {
-
-        }
     }
 }

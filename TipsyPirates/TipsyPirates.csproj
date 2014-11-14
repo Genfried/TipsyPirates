@@ -188,9 +188,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Whirlpool.cs" />
+    <Compile Include="Models\Current.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\MoveCard.cs" />
     <Compile Include="Models\NormalTile.cs" />
+    <Compile Include="Models\SeaMonster.cs" />
     <Compile Include="Models\Ship.cs" />
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

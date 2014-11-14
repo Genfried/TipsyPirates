@@ -12,10 +12,8 @@ namespace TipsyPirates.Tests.Models
         {
             Tile tile = new NormalTile();
             Ship ship = new Ship(tile);
-            Assert.AreEqual(ship.CrewMembers, 10);
-            Assert.AreEqual(ship.ReserveShips, 2);
             Assert.AreEqual(ship.Direction, Enums.Direction.North);
-            Assert.AreEqual(ship.Location, tile);
+            Assert.AreSame(ship.Location, tile);
         }
 
         [TestMethod]
@@ -26,7 +24,7 @@ namespace TipsyPirates.Tests.Models
 
             Ship ship = new Ship(tile);
             ship.Sail();
-            Assert.AreEqual(ship.Location, tile.Neighbours[(int)Enums.Direction.North]);
+            Assert.AreSame(ship.Location, tile.Neighbours[(int)Enums.Direction.North]);
         }
 
         [TestMethod]
@@ -37,7 +35,7 @@ namespace TipsyPirates.Tests.Models
 
             Ship ship = new Ship(tile);
             ship.SailBackwards();
-            Assert.AreEqual(ship.Location, tile.Neighbours[(int)Enums.Direction.South]);
+            Assert.AreSame(ship.Location, tile.Neighbours[(int)Enums.Direction.South]);
         }
 
         [TestMethod]
@@ -47,9 +45,9 @@ namespace TipsyPirates.Tests.Models
             tile = CreateSimpleBoard(tile);
 
             Ship ship = new Ship(tile);
-            ship.TurnLeft();
+            ship.TurnPort();
             ship.Sail();
-            Assert.AreEqual(ship.Location, tile.Neighbours[(int)Enums.Direction.West]);
+            Assert.AreSame(ship.Location, tile.Neighbours[(int)Enums.Direction.West]);
         } 
 
         [TestMethod]
@@ -58,7 +56,7 @@ namespace TipsyPirates.Tests.Models
             Tile tile = new NormalTile();
             Ship ship = new Ship(tile);
             ship.Sail();
-            Assert.AreEqual(ship.Location, tile);
+            Assert.AreSame(ship.Location, tile);
         }
 
         [TestMethod]
@@ -66,7 +64,7 @@ namespace TipsyPirates.Tests.Models
         {
             Tile tile = new NormalTile();
             Ship ship = new Ship(tile);
-            ship.TurnRight();
+            ship.TurnStarboard();
             Assert.AreEqual(ship.Direction, Enums.Direction.East);
         }
 
@@ -75,7 +73,7 @@ namespace TipsyPirates.Tests.Models
         {
             Tile tile = new NormalTile();
             Ship ship = new Ship(tile);
-            ship.TurnLeft();
+            ship.TurnPort();
             Assert.AreEqual(ship.Direction, Enums.Direction.West);
         }
 
